@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Planner</title>
+<link rel="stylesheet" href="style планер.css">
+</head>
+<body>
+
+<header>
+<div class="logo">Smart student planner</div>
+
+<nav>
+<a href="planner.html">My tasks</a>
+<a href="schedule.html">Lesson schedule</a>
+<a href="analytics.html">Analytics</a>
+</nav>
+
+<div class="right">
+<span>🔔</span>
+
+<a href="private.html">
+  <img id="avatarSmall" src="https://via.placeholder.com/40">
+</a>
+
+</div>
+</header>
+
+<div class="container">
+
+<div class="main">
+
+<h1>Hi, <span id="username">Student</span></h1>
+
+<h2>Your deadlines:</h2>
+
+<div class="deadline">
+<label>
+<input type="checkbox" class="task">
+<span class="subject">Math</span>
+</label>
+<span class="date">until April 10</span>
+</div>
+
+<div class="deadline">
+<label>
+<input type="checkbox" class="task">
+<span class="subject">Graphic design</span>
+</label>
+<span class="date">until April 12</span>
+</div>
+
+<div class="deadline">
+<label>
+<input type="checkbox" class="task">
+<span class="subject">Web developer</span>
+</label>
+<span class="date">until April 15</span>
+</div>
+
+<div class="deadline">
+<label>
+<input type="checkbox" class="task">
+<span class="subject">German language</span>
+</label>
+<span class="date">until April 18</span>
+</div>
+
+<div class="achievements">
+<h3>My achievements</h3>
+
+<p>Tasks completed 
+<span id="doneTasks">0</span> / 
+<span id="totalTasks">4</span>
+</p>
+
+<div class="bar">
+<div class="fill" id="progressBar"></div>
+</div>
+</div>
+
+</div>
+
+<div class="side">
+
+<div class="card">
+<h2>Timer</h2>
+
+<input type="number" id="timerInput" placeholder="Enter minutes" min="1">
+
+<div id="timer">00:00</div>
+
+<button id="startBtn">Start</button>
+<button id="pauseBtn">Pause</button>
+<button id="resetBtn">Reset</button>
+
+</div>
+
+<div class="card">
+<h3>Next Exam</h3>
+<p id="nextExam">English — 20 March</p>
+</div>
+
+</div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // ===== USER =====
+  let name = localStorage.getItem("studentName")
+  let surname = localStorage.getItem("studentSurname")
+  let photo = localStorage.getItem("studentPhoto")
+
+  if(name){
+    document.getElementById("username").textContent = name
+  }
+
+  if(photo){
+    document.getElementById("avatarSmall").src = photo
+  }
+
+  // ===== TIMER =====
+  let timeLeft = 0
+  let timerInterval = null
+
+  function updateTimer(){
+    const minutes = Math.floor(timeLeft / 60)
+    const seconds = timeLeft % 60
+
+    document.getElementById("timer").textContent =
+    `${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`
+  }
+
+  function startTimer(){
+    if(timerInterval) return
+
+    const input = document.getElementById("timerInput").value
+
+    if(input){
+      timeLeft = input * 60
+      updateTimer()
+    }
+
+    timerInterval = setInterval(()=>{
+      if(timeLeft > 0){
+        timeLeft--
+        updateTimer()
+      }else{
+        clearInterval(timerInterval)
+        timerInterval = null
+        alert("Time is up!")
+      }
+    },1000)
+  }
+
+  function pauseTimer(){
+    clearInterval(timerInterval)
+    timerInterval = null
+  }
+
+  function resetTimer(){
+    clearInterval(timerInterval)
+    timerInterval = null
+    timeLeft = 0
+    updateTimer()
+  }
+
+  document.getElementById("startBtn").onclick = startTimer
+  document.getElementById("pauseBtn").onclick = pauseTimer
+  document.getElementById("resetBtn").onclick = resetTimer
+
+  updateTimer()
+
+  // ===== TASKS =====
+  const tasks = document.querySelectorAll(".task")
+  const doneText = document.getElementById("doneTasks")
+  const totalText = document.getElementById("totalTasks")
+  const progressBar = document.getElementById("progressBar")
+
+  totalText.textContent = tasks.length
+
+  let saved = JSON.parse(localStorage.getItem("plannerTasks")) || []
+
+  tasks.forEach((task, index)=>{
+
+    if(saved[index]){
+      task.checked = saved[index].done
+    }
+
+    updateStyle(task)
+
+    task.addEventListener("change", ()=>{
+      saved[index] = {done: task.checked}
+      localStorage.setItem("plannerTasks", JSON.stringify(saved))
+
+      updateStyle(task)
+      updateProgress()
+    })
+
+  })
+
+  function updateStyle(task){
+    if(task.checked){
+      task.parentElement.style.textDecoration = "line-through"
+      task.parentElement.style.opacity = "0.6"
+    }else{
+      task.parentElement.style.textDecoration = "none"
+      task.parentElement.style.opacity = "1"
+    }
+  }
+
+  function updateProgress(){
+    let done = document.querySelectorAll(".task:checked").length
+    doneText.textContent = done
+
+    let percent = (done / tasks.length) * 100
+    progressBar.style.width = percent + "%"
+  }
+
+  updateProgress()
+
+})
+
+window.onload = function () {
+  const avatar = document.getElementById("avatar");
+  const savedPhoto = localStorage.getItem("studentPhoto");
+
+  if (savedPhoto && avatar) {
+    avatar.style.backgroundImage = `url(${savedPhoto})`;
+    avatar.style.backgroundSize = "cover";
+    avatar.style.backgroundPosition = "center";
+  }
+} 
+</script>
+
+</body>
+</html>

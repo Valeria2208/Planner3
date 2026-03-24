@@ -1,0 +1,124 @@
+body{
+font-family:Arial;
+margin:0;
+  background: #e8e8e8;
+}
+
+/* HEADER */
+header{
+  background: #7a5524;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+}
+
+nav{
+  display: flex;
+  gap: 20px;
+}
+nav a:hover{
+background:rgba(255,255,255,0.2);
+}
+
+.right{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 18px;
+}
+/* MAIN CONTAINER */
+
+.container{
+display:flex;
+width:100%;
+padding:40px;
+gap:60px;
+box-sizing:border-box;
+}
+
+/* LEFT SIDE */
+
+.left{
+flex:1;
+}
+
+/* RIGHT SIDE */
+.main-right{
+flex:1;
+}
+
+/* DONUT + LEGEND */
+
+.stats{
+display:flex;
+align-items:center;
+gap:40px;
+margin-top:20px;
+}
+
+.legend-item{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+font-size:16px;
+}
+
+.color{
+width:14px;
+height:14px;
+border-radius:3px;
+}
+
+.study{background:#2F80ED;}
+.exam{background:#EB5757;}
+.project{background:#27AE60;}
+.personal{background:#F2C94C;}
+
+/* BAR CHART DAYS */
+
+.week-days{
+display:flex;
+justify-content:space-between;
+width:100%;
+margin-top:10px;
+font-weight:500;
+}
+
+.week-days span{
+flex:1;
+text-align:center;
+}
+
+/* CANVAS */
+
+#barChart{
+width:100%;
+height:220px;
+}
+
+#donutChart{
+width:220px;
+height:220px;
+}

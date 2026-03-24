@@ -1,0 +1,221 @@
+body{
+font-family:Arial;
+margin:0;
+  background: #e8e8e8;
+}
+
+header{
+  background: #7a5524;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+}
+
+nav{
+  display: flex;
+  gap: 20px;
+}
+
+.right{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#avatar{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+nav a:hover{
+background:rgba(255,255,255,0.2);
+}
+
+.container{
+padding:40px;
+}
+
+.days{
+display:flex;
+width:100%;
+margin:20px 0;
+}
+
+.days button{
+flex:1;
+padding:15px;
+font-size:16px;
+border:none;
+cursor:pointer;
+color:white;
+}
+
+.days button:nth-child(1){
+background:#4A90E2; /* Monday */
+}
+
+.days button:nth-child(2){
+background:#5AA9E6; /* Tuesday */
+}
+
+.days button:nth-child(3){
+background:#7BC8A4; /* Wednesday */
+}
+
+.days button:nth-child(4){
+background:#F4A261; /* Thursday */
+}
+
+.days button:nth-child(5){
+background:#E76F51; /* Friday */
+}
+
+.days button:hover{
+opacity:0.9;
+}
+
+.addTask{
+margin-bottom:20px;
+}
+
+.addTask button{
+padding:8px 15px;
+background:#8B5E2E;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+.schedule{
+margin-top:20px;
+}
+
+.task{
+background:#DCDCDC;
+padding:15px;
+margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+}
+
+.study{
+background:#4A90E2;
+color:white;
+}
+
+.exam{
+background:#E74C3C;
+color:white;
+}
+
+.project{
+background:#2ECC71;
+color:white;
+}
+
+.personal{
+background:#F1C40F;
+color:black;
+}
+
+#daySelect,
+#categorySelect{
+padding:10px;
+font-size:15px;
+border:none;
+border-radius:6px;
+margin-right:10px;
+background:#ffffff;
+cursor:pointer;
+outline:none;
+}
+
+#daySelect:hover,
+#categorySelect:hover{
+background:#f0f0f0;
+}
+
+#daySelect:focus,
+#categorySelect:focus{
+box-shadow:0 0 5px rgba(0,0,0,0.2);
+}
+
+#taskInput {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  width: 250px;
+  margin-right: 10px;
+  outline: none;
+}
+
+#taskInput::placeholder {
+  color: #888;
+}
+
+#taskInput:focus {
+  border-color: #8B5E2E;
+  box-shadow: 0 0 5px rgba(139, 94, 46, 0.5);
+}
+
+.addTask button{
+padding:10px 20px;
+background:#8B5E2E;
+color:white;
+border:none;
+border-radius:6px;
+font-size:15px;
+cursor:pointer;
+}
+
+.addTask button:hover{
+background:#A9743A;
+}
+
+
+.addTask input,
+.addTask select{
+padding:10px 15px;
+font-size:15px;
+border:none;
+border-radius:6px;
+margin-right:10px;
+background:#ffffff;
+outline:none;
+width:180px;
+box-shadow:0 0 3px rgba(0,0,0,0.1);
+}
+
+.addTask input::placeholder{
+color:#777;
+}
+
+.addTask input:focus,
+.addTask select:focus{
+box-shadow:0 0 6px rgba(0,0,0,0.2);
+}
+
+.addTask{
+display:flex;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+}

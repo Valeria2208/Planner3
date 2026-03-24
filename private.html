@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+<link rel="stylesheet" href="private.css">
+</head>
+<body>
+
+<header>
+<div class="logo">Smart student planner</div>
+
+<nav>
+<a href="planner.html">My tasks</a>
+<a href="schedule.html">Lesson schedule</a>
+<a href="analytics.html">Analytics</a>
+</nav>
+
+<div class="right">
+<span>🔔</span>
+<a href="private.html">
+  <img id="avatarSmall" src="https://via.placeholder.com/40">
+</a>
+</div> 
+</header>
+
+<div class="container">
+
+<!-- PROFILE -->
+<div class="profile">
+  <img id="avatar" src="https://via.placeholder.com/120">
+  <h3 id="name">Student</h3>
+  <p>Age: <span id="age">-</span></p>
+  <p>Grade: <span id="grade">-</span></p>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="dashboard">
+
+  <!-- SCHEDULE -->
+  <div class="box">
+    <h4>Schedule for today</h4>
+    <div class="item">10:00 — Math</div>
+    <div class="item">12:00 — Graphic design</div>
+    <div class="item">14:00 — Web developer</div>
+    <div class="item">16:00 — German language</div>
+  </div>
+
+  <!-- TASK LIST -->
+<div class="box">
+  <h4>Task List</h4>
+
+  <div id="taskList"></div>
+
+  <input type="text" id="taskInput" placeholder="New task...">
+  <button class="btn" onclick="addTask()">Add task</button>
+</div>
+
+</div>
+
+<!-- NOTES -->
+<div class="notes">
+  <h4>Notes</h4>
+
+  <div class="stickers" id="notesList"></div>
+
+  <input type="text" id="noteInput" placeholder="Write note...">
+
+  <select id="colorSelect">
+    <option value="green">Green</option>
+    <option value="yellow">Yellow</option>
+    <option value="pink">Pink</option>
+  </select>
+
+  <button class="btn" onclick="addNote()">Add note</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<script src="private.js"></script>
+</body>
+</html>

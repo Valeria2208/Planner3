@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Lesson schedule</title>
+<link rel="stylesheet" href="schedule.css">
+</head>
+
+<body>
+
+<header>
+<div class="logo">Smart student planner</div>
+
+<nav>
+<a href="planner.html">My tasks</a>
+<a href="schedule.html">Lesson schedule</a>
+<a href="analytics.html">Analytics</a>
+</nav>
+
+<div class="right">
+<span>🔔</span>
+<a href="private.html">
+<img id="avatar" src="" width="40" height="40" style="border-radius:50%;">
+</a>
+</div> 
+</header>
+
+
+<div class="container">
+
+<h1>Weekly schedule</h1>
+
+
+<div class="addTask">
+
+<input type="text" id="taskInput" placeholder="Enter task or project">
+
+<select id="daySelect">
+<option value="mon">MON</option>
+<option value="tue">TUE</option>
+<option value="wed">WED</option>
+<option value="thu">THU</option>
+<option value="fri">FRI</option>
+</select>
+
+<select id="categorySelect">
+<option value="study">Study</option>
+<option value="exam">Exam</option>
+<option value="project">Project</option>
+<option value="personal">Personal</option>
+</select>
+
+<button onclick="addTask()">Add</button>
+
+</div>
+
+
+<div class="days">
+
+<button onclick="showDay('mon')">MON</button>
+<button onclick="showDay('tue')">TUE</button>
+<button onclick="showDay('wed')">WED</button>
+<button onclick="showDay('thu')">THU</button>
+<button onclick="showDay('fri')">FRI</button>
+
+</div>
+
+
+<div id="scheduleContent" class="schedule"></div>
+
+</div>
+
+
+<script src="schedule.js"></script>
+
+<script>
+const avatar = document.getElementById("avatar")
+const savedAvatar = localStorage.getItem("avatar")
+
+if (savedAvatar && savedAvatar.startsWith("data:image")) {
+  avatar.src = savedAvatar
+} else {
+  avatar.src = "https://via.placeholder.com/40"
+}
+</script>
+
+</body>
+</html>

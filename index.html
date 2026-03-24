@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration</title>
+<link rel="stylesheet" href="style регистрация.css">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="top">
+    <img src="Group 1.png" alt="">
+  </div>
+
+  <div class="profile">
+    <label for="photoInput">
+      <div class="avatar" id="avatar"></div>
+    </label>
+    <input type="file" id="photoInput" accept="image/*">
+    <p class="change">CHANGE PHOTO</p>
+  </div>
+
+  <form id="signupForm">
+    <input type="text" id="name" placeholder="NAME" required>
+    <input type="text" id="surname" placeholder="SURNAME" required>
+    <input type="password" id="password" placeholder="PASSWORD" required>
+    <select id="classCourse" required>
+      <option disabled selected>Select class / course</option>
+      <optgroup label="School">
+        <option>1 grade</option><option>2 grade</option><option>3 grade</option>
+        <option>4 grade</option><option>5 grade</option><option>6 grade</option>
+        <option>7 grade</option><option>8 grade</option><option>9 grade</option>
+        <option>10 grade</option><option>11 grade</option>
+      </optgroup>
+      <optgroup label="University">
+        <option>1 course</option><option>2 course</option><option>3 course</option>
+        <option>4 course</option><option>5 course</option>
+      </optgroup>
+    </select>
+    <input type="number" id="age" placeholder="Age" min="6" max="100">
+    <button type="button" class="signup" id="signupBtn">SIGN UP</button>
+  </form>
+
+</div>
+
+<script>
+const input = document.getElementById("photoInput");
+const avatar = document.getElementById("avatar");
+
+// ===== Загрузка и сохранение фото =====
+input.addEventListener("change", function() {
+  const file = this.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    const image = e.target.result;
+
+    // 💾 сохраняем фото
+    localStorage.setItem("studentPhoto", image);
+
+    // показываем
+    avatar.style.backgroundImage = `url(${image})`;
+    avatar.style.backgroundSize = "cover";
+    avatar.style.backgroundPosition = "center";
+
+    console.log("СОХРАНЕНО!");
+  };
+
+  reader.readAsDataURL(file);
+});
+
+// ===== КНОПКА SIGN UP =====
+document.getElementById("signupBtn").addEventListener("click", function() {
+
+  const name = document.getElementById("name").value;
+  const surname = document.getElementById("surname").value;
+  const age = document.getElementById("age").value;
+  const classCourse = document.getElementById("classCourse").value;
+
+  if (!name || !surname) {
+    alert("Enter name and surname");
+    return;
+  }
+
+  localStorage.setItem("studentName", name);
+  localStorage.setItem("studentSurname", surname);
+  localStorage.setItem("studentAge", age);
+  localStorage.setItem("studentClass", classCourse);
+
+  // 👉 переход ТОЛЬКО тут
+  window.location.href = "planner.html";
+});
+</script>
+
+</body>
+</html>
+
